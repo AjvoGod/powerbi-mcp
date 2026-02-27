@@ -234,48 +234,6 @@ With cloud credentials (optional):
 
 ---
 
-## 🔨 Development (for contributors)
-
-```bash
-git clone https://github.com/AjvoGod/powerbi-mcp.git
-cd powerbi-mcp
-npm install
-cp .env.example .env    # fill in POWERBI_PBIX_ROOT
-npm run build
-npm test                # 39 tests
-npm run lint
-```
-
-### Architecture
-
-```
-src/
-├── index.ts                    # MCP server entry point
-├── logger.ts                   # Structured logging → stderr
-├── auth/msalAuth.ts            # Azure AD OAuth2 (MSAL)
-├── api/
-│   ├── powerbiClient.ts        # REST API client
-│   └── types.ts                # TypeScript interfaces
-├── pbix/
-│   ├── pbixParser.ts           # PBIX ZIP parsing
-│   ├── pbixAnalyzer.ts         # Batch analysis & documentation
-│   ├── metadataExtractor.ts    # Table/measure extraction helpers
-│   ├── desktopModelExtractor.ts # Desktop model discovery + DMV
-│   └── pbixPath.ts             # Path resolution
-├── tools/
-│   ├── toolUtils.ts            # safeTool wrapper, helpers
-│   ├── pbixTools.ts            # 11 PBIX local tools
-│   ├── reportTools.ts          # 9 report tools
-│   ├── datasetTools.ts         # 9 dataset tools
-│   ├── workspaceTools.ts       # 3 workspace tools
-│   ├── dataflowTools.ts        # 4 dataflow tools
-│   ├── adminTools.ts           # 3 admin tools
-│   ├── dashboardTools.ts       # 2 dashboard tools
-│   ├── gatewayTools.ts         # 2 gateway tools
-│   └── capacityTools.ts        # 2 capacity tools
-└── __tests__/                  # Vitest unit tests (39 tests)
-```
-
 ---
 
 ## ⚠️ Limitations (Pro license)
@@ -287,7 +245,3 @@ src/
 | Enhanced refresh | ❌ | ✅ |
 | Refresh limit | 8/day | Per capacity |
 | PBIX local analysis | ✅ | ✅ |
-
-## License
-
-MIT
