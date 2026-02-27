@@ -1,105 +1,59 @@
 # Power BI MCP Server
 
-MCP server pro Power BI — lokální analýza PBIX souborů, cloud API operace, export reportů, a extrakce sémantických modelů z Power BI Desktop.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](https://nodejs.org)
 
-**45 nástrojů** • TypeScript • Cross-platform • Optimalizováno pro Pro licenci
+MCP server for Power BI — local PBIX file analysis, cloud API operations, report export, and semantic model extraction from Power BI Desktop.
+
+**45 tools** • TypeScript • Cross-platform • Optimized for Pro license
 
 ---
 
-## ⚡ Rychlý start (npx)
+## ⚡ Quick Start
 
-Žádné klonování, žádné buildování. Stačí přidat do konfigurace tvého MCP klienta:
+No cloning, no building. Just add to your MCP client config:
 
 ```json
 {
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
       "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/tvým/pbix/souborům"
+        "POWERBI_PBIX_ROOT": "/path/to/your/pbix/files"
       }
     }
   }
 }
 ```
 
-> **PBIX lokální analýza funguje hned** — nepotřebuješ žádné Azure credentials.  
-> Pro cloud operace (workspaces, refresh, export) přidej do `env` ještě `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`.
+> **PBIX local analysis works immediately** — no Azure credentials needed.
+> For cloud operations (workspaces, refresh, export) add `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET` to `env`.
 
 ---
 
-## 📋 Konfigurace pro jednotlivé klienty
-
-### VS Code / Codex (`.vscode/mcp.json`)
-
-```json
-{
-  "servers": {
-    "powerbi": {
-      "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
-      "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/pbix"
-      }
-    }
-  }
-}
-```
+## 📋 Client Configuration
 
 ### Claude Desktop
 
-`~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
       "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/pbix"
+        "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
     }
   }
 }
 ```
 
-### Cursor
-
-Settings → MCP Servers → Add:
-
-```json
-{
-  "mcpServers": {
-    "powerbi": {
-      "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
-      "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/pbix"
-      }
-    }
-  }
-}
-```
-
-### Codex CLI (OpenAI)
-
-`~/.codex/config.json`:
-
-```json
-{
-  "mcpServers": {
-    "powerbi": {
-      "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
-      "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/pbix"
-      }
-    }
-  }
-}
-```
+---
 
 ### Gemini CLI (Google)
 
@@ -110,9 +64,9 @@ Settings → MCP Servers → Add:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "powerbi-mcp"],
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
       "env": {
-        "POWERBI_PBIX_ROOT": "/cesta/k/pbix"
+        "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
     }
   }
@@ -121,22 +75,114 @@ Settings → MCP Servers → Add:
 
 ---
 
-## 🔧 Konfigurace environment proměnných
+### Codex CLI (OpenAI)
 
-| Proměnná | Povinná | Popis |
+`~/.codex/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "powerbi": {
+      "command": "npx",
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "env": {
+        "POWERBI_PBIX_ROOT": "/path/to/pbix"
+      }
+    }
+  }
+}
+```
+
+---
+
+### VS Code / Codex IDE / GitHub Copilot
+
+Add to your project's `.vscode/mcp.json` or user settings:
+
+```json
+{
+  "servers": {
+    "powerbi": {
+      "command": "npx",
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "env": {
+        "POWERBI_PBIX_ROOT": "${workspaceFolder}"
+      }
+    }
+  }
+}
+```
+
+> **Tip:** VS Code extensions like Codex IDE, Cline, Roo Code, and GitHub Copilot all support MCP servers through this same `.vscode/mcp.json` configuration.
+
+---
+
+### Cursor
+
+Settings → MCP Servers → Add:
+
+```json
+{
+  "mcpServers": {
+    "powerbi": {
+      "command": "npx",
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "env": {
+        "POWERBI_PBIX_ROOT": "/path/to/pbix"
+      }
+    }
+  }
+}
+```
+
+---
+
+### Windsurf
+
+Settings → MCP → Add Server:
+
+```json
+{
+  "mcpServers": {
+    "powerbi": {
+      "command": "npx",
+      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "env": {
+        "POWERBI_PBIX_ROOT": "/path/to/pbix"
+      }
+    }
+  }
+}
+```
+
+---
+
+## 🔑 Access Requirements
+
+This server is installed directly from GitHub. Users need:
+
+1. **Node.js 20+** installed
+2. **Git** installed
+3. **GitHub access** to the `AjvoGod/powerbi-mcp` repository (if private, users must have read access and be authenticated via `gh auth login` or SSH keys)
+
+---
+
+## 🔧 Environment Variables
+
+| Variable | Required | Description |
 |---|---|---|
-| `POWERBI_PBIX_ROOT` | Ne | Kořenová složka s `.pbix` soubory |
-| `AZURE_TENANT_ID` | Pro cloud | Azure AD tenant |
-| `AZURE_CLIENT_ID` | Pro cloud | Azure AD app client ID |
-| `AZURE_CLIENT_SECRET` | Pro cloud | Azure AD app secret |
-| `LOG_LEVEL` | Ne | Úroveň logování: `debug`, `info`, `warn`, `error` |
+| `POWERBI_PBIX_ROOT` | No | Root folder containing `.pbix` files |
+| `AZURE_TENANT_ID` | For cloud | Azure AD tenant ID |
+| `AZURE_CLIENT_ID` | For cloud | Azure AD app client ID |
+| `AZURE_CLIENT_SECRET` | For cloud | Azure AD app secret |
+| `LOG_LEVEL` | No | Logging level: `debug`, `info`, `warn`, `error` |
 
-S cloud credentials (volitelné):
+With cloud credentials (optional):
 
 ```json
 {
   "env": {
-    "POWERBI_PBIX_ROOT": "/cesta/k/pbix",
+    "POWERBI_PBIX_ROOT": "/path/to/pbix",
     "AZURE_TENANT_ID": "xxxx",
     "AZURE_CLIENT_ID": "xxxx",
     "AZURE_CLIENT_SECRET": "xxxx"
@@ -146,66 +192,60 @@ S cloud credentials (volitelné):
 
 ---
 
-## 🛠 Nástroje (45)
+## 🛠 Tools (45)
 
-| Kategorie | Nástrojů | Popis |
+| Category | Count | Description |
 |---|---|---|
-| 📁 PBIX Local | 11 | Analýza, M kód, layout, metadata, datasources, porovnání, batch, dokumentace, desktop discovery, semantic model, server info |
-| 📊 Dataset | 9 | List, detail, tabulky, zdroje, parametry, refresh |
-| 📄 Report | 9 | List, detail, stránky, export PDF/PNG/PPTX, clone, rebind, export & download |
-| 🏢 Workspace | 3 | List, detail, uživatelé |
-| 🔄 Dataflow | 4 | List, detail, zdroje, refresh |
+| 📁 PBIX Local | 11 | Analysis, M code, layout, metadata, datasources, comparison, batch, documentation, desktop discovery, semantic model, server info |
+| 📊 Dataset | 9 | List, detail, tables, sources, parameters, refresh |
+| 📄 Report | 9 | List, detail, pages, export PDF/PNG/PPTX, clone, rebind, export & download |
+| 🏢 Workspace | 3 | List, detail, users |
+| 🔄 Dataflow | 4 | List, detail, sources, refresh |
 | 🔐 Admin | 3 | Activity log, workspace scan, apps |
-| 📋 Dashboard | 2 | List, dlaždice |
+| 📋 Dashboard | 2 | List, tiles |
 | 🌐 Gateway | 2 | List, datasources |
 | ⚡ Capacity | 2 | List, workloads |
 
 ---
 
-## 💬 Příklady použití
+## 💬 Usage Examples
 
-### Bez Azure credentials (PBIX analýza)
-
-```
-"Analyzuj PBIX soubor Finance/Invoice Report.pbix"
-"Ukaž mi Power Query (M) kód z tohoto PBIX"
-"Vygeneruj markdown dokumentaci ze všech PBIX ve složce"
-"Porovnej tyto dva PBIX soubory"
-"Popiš report pro intranet (sekce Business popis, Technický popis, Filtry, Míry; bez tabulek)"
-"Najdi běžící lokální modely z Power BI Desktop"
-"Vytáhni tabulky a measures z otevřeného reportu v Desktopu"
-```
-
-#### `pbix_describe_report` (intranetový prompt)
-
-- Výstup je navržený pro 4 sekce: `Business popis`, `Technický popis`, `Filtry`, `Míry`.
-- Instrukce výslovně zakazují uvádět tabulky nebo seznamy tabulek.
-- Pokud část podkladů chybí, prompt vede asistenta k použití hodnoty `neuvedeno`.
-
-### S Azure credentials (Cloud operace)
+### Without Azure credentials (PBIX analysis)
 
 ```
-"Vypiš všechny workspaces"
-"Spusť refresh datasetu Y"
-"Exportuj report Z do PDF a stáhni ho"
-"Ukaž historii refreshů datasetu"
+"Analyze the PBIX file Finance/Invoice Report.pbix"
+"Show me the Power Query (M) code from this PBIX"
+"Generate markdown documentation from all PBIX files in a folder"
+"Compare these two PBIX files"
+"Describe the report for intranet (Business description, Technical description, Filters, Measures sections; no tables)"
+"Find running local models from Power BI Desktop"
+"Extract tables and measures from the open Desktop report"
+```
+
+### With Azure credentials (Cloud operations)
+
+```
+"List all workspaces"
+"Trigger a refresh for dataset Y"
+"Export report Z to PDF and download it"
+"Show the refresh history for a dataset"
 ```
 
 ---
 
-## 🔨 Vývoj (pro přispěvatele)
+## 🔨 Development (for contributors)
 
 ```bash
-git clone https://github.com/ivoschwarz/powerbi-mcp.git
+git clone https://github.com/AjvoGod/powerbi-mcp.git
 cd powerbi-mcp
 npm install
-cp .env.example .env    # vyplň POWERBI_PBIX_ROOT
+cp .env.example .env    # fill in POWERBI_PBIX_ROOT
 npm run build
-npm test                # 37 testů
+npm test                # 39 tests
 npm run lint
 ```
 
-### Architektura
+### Architecture
 
 ```
 src/
@@ -232,21 +272,21 @@ src/
 │   ├── dashboardTools.ts       # 2 dashboard tools
 │   ├── gatewayTools.ts         # 2 gateway tools
 │   └── capacityTools.ts        # 2 capacity tools
-└── __tests__/                  # Vitest unit tests (37 tests)
+└── __tests__/                  # Vitest unit tests (39 tests)
 ```
 
 ---
 
-## ⚠️ Omezení (Pro licence)
+## ⚠️ Limitations (Pro license)
 
 | Feature | Pro | Premium/PPU |
 |---|---|---|
 | REST API (list, refresh, export) | ✅ | ✅ |
-| XMLA endpoint (DAX dotazy) | ❌ | ✅ |
+| XMLA endpoint (DAX queries) | ❌ | ✅ |
 | Enhanced refresh | ❌ | ✅ |
-| Refresh limit | 8/den | dle kapacity |
-| PBIX lokální analýza | ✅ | ✅ |
+| Refresh limit | 8/day | Per capacity |
+| PBIX local analysis | ✅ | ✅ |
 
-## Licence
+## License
 
 MIT

@@ -17,6 +17,7 @@ vitest.config.ts
 
 # Tests
 src/__tests__/
+dist/__tests__/
 
 # OS
 .DS_Store

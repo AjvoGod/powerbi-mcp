@@ -2,6 +2,8 @@
   "name": "powerbi-mcp",
   "version": "1.0.0",
   "description": "MCP server for Power BI — workspace management, dataset operations, report export, PBIX local analysis",
+  "homepage": "https://github.com/AjvoGod/powerbi-mcp#readme",
+  "bugs": "https://github.com/AjvoGod/powerbi-mcp/issues",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -35,8 +37,12 @@
     "ai",
     "llm",
     "claude",
+    "gemini",
     "copilot",
-    "cursor"
+    "codex",
+    "cursor",
+    "vscode",
+    "windsurf"
   ],
   "repository": {
     "type": "git",
