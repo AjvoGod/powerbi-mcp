@@ -1,4 +1,3 @@
-import { existsSync } from 'fs';
 import { isAbsolute, join, resolve } from 'path';
 
 function looksLikeWindowsAbsolutePath(input: string): boolean {

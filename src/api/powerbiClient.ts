@@ -1,4 +1,4 @@
-import { MsalAuth } from '../auth/msalAuth.js';
+import type { MsalAuth } from '../auth/msalAuth.js';
 import { logger } from '../logger.js';
 
 const BASE_URL = 'https://api.powerbi.com/v1.0/myorg';

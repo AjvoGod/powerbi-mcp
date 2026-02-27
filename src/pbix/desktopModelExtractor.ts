@@ -33,56 +33,11 @@ function getWindowsWorkspaceRoot(customRoot?: string): string | null {
     return join(localAppData, 'Microsoft', 'Power BI Desktop', 'AnalysisServicesWorkspaces');
 }
 
-function normalizeJsonArray<T>(value: unknown): T[] {
-    if (Array.isArray(value)) {
-        return value as T[];
-    }
-    if (value === null || value === undefined) {
-        return [];
-    }
-    return [value as T];
-}
 
 function toPowerShellLiteral(value: string): string {
     return `'${value.replace(/'/g, "''")}'`;
 }
 
-function buildDesktopDiscoveryScript(customRoot?: string): string {
-    const rootLiteral = toPowerShellLiteral(customRoot ?? '');
-    return `
-$ErrorActionPreference = 'Stop'
-$root = ${rootLiteral}
-if (-not $root) {
-    $root = Join-Path $env:LOCALAPPDATA 'Microsoft\\Power BI Desktop\\AnalysisServicesWorkspaces'
-}
-
-if (-not (Test-Path $root)) {
-    @() | ConvertTo-Json -Depth 4
-    exit 0
-}
-
-$items = Get-ChildItem -Path $root -Directory | ForEach-Object {
-    $portPath = Join-Path $_.FullName 'msmdsrv.port.txt'
-    if (-not (Test-Path $portPath)) {
-        return
-    }
-    $portText = (Get-Content -Path $portPath -ErrorAction SilentlyContinue | Select-Object -First 1).Trim()
-    $port = 0
-    if (-not [int]::TryParse($portText, [ref]$port)) {
-        return
-    }
-    [pscustomobject]@{
-        workspacePath = $_.FullName
-        server = "localhost:$port"
-        port = $port
-        discoveredAt = (Get-Date).ToString('o')
-        mtime = $_.LastWriteTimeUtc.ToFileTimeUtc()
-    }
-} | Sort-Object mtime -Descending
-
-$items | Select-Object workspacePath, server, port, discoveredAt | ConvertTo-Json -Depth 4
-`;
-}
 
 function runDesktopPowerShell(script: string): string {
     if (process.platform !== 'win32') {

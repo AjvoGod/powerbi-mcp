@@ -1,4 +1,5 @@
-import { ConfidentialClientApplication, Configuration, AuthenticationResult } from '@azure/msal-node';
+import type { Configuration, AuthenticationResult } from '@azure/msal-node';
+import { ConfidentialClientApplication } from '@azure/msal-node';
 
 const POWERBI_SCOPE = 'https://analysis.windows.net/powerbi/api/.default';
 
