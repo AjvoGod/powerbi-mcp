@@ -18,7 +18,7 @@ No cloning, no building. Just add to your MCP client config:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/your/pbix/files"
       }
@@ -44,7 +44,7 @@ No cloning, no building. Just add to your MCP client config:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
@@ -64,7 +64,7 @@ No cloning, no building. Just add to your MCP client config:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
@@ -84,7 +84,7 @@ No cloning, no building. Just add to your MCP client config:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
@@ -104,7 +104,7 @@ Add to your project's `.vscode/mcp.json` or user settings:
   "servers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "${workspaceFolder}"
       }
@@ -126,7 +126,7 @@ Settings → MCP Servers → Add:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
@@ -146,7 +146,7 @@ Settings → MCP → Add Server:
   "mcpServers": {
     "powerbi": {
       "command": "npx",
-      "args": ["-y", "github:AjvoGod/powerbi-mcp"],
+      "args": ["-y", "powerbi-mcp"],
       "env": {
         "POWERBI_PBIX_ROOT": "/path/to/pbix"
       }
@@ -155,15 +155,6 @@ Settings → MCP → Add Server:
 }
 ```
 
----
-
-## 🔑 Access Requirements
-
-This server is installed directly from GitHub. Users need:
-
-1. **Node.js 20+** installed
-2. **Git** installed
-3. **GitHub access** to the `AjvoGod/powerbi-mcp` repository (if private, users must have read access and be authenticated via `gh auth login` or SSH keys)
 
 ---
 

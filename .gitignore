@@ -15,4 +15,18 @@ Thumbs.db
 
 # Logs & coverage
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 coverage/
+output/
+
+# npm pack output
+*.tgz
+*.tar.gz
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
