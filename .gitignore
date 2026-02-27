@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.env
+*.pbix
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Logs & coverage
+*.log
+coverage/

@@ -1,0 +1,27 @@
+# Source
+src/
+tsconfig.json
+eslint.config.mjs
+.prettierrc
+vitest.config.ts
+
+# Dev/IDE
+.vscode/
+.env
+.env.example.*
+.gitignore
+.nvmrc
+.node-version
+.npmrc
+.git/
+
+# Tests
+src/__tests__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+coverage/

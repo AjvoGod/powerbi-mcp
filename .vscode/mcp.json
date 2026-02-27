@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "powerbi-mcp-local": {
+      "type": "stdio",
+      "command": "npm",
+      "args": ["run", "start:mcp"],
+      "envFile": "${workspaceFolder}/.env"
+    }
+  }
+}
